@@ -13,6 +13,9 @@ public class StudentController {
 	@Value("${name}")
 	private String name;
 	
+	@Value("${spring.application.name}")
+	private String appName;
+	
 	@RequestMapping(value="/history",method=RequestMethod.GET)
 	public String getHistory() {
 		
@@ -23,6 +26,12 @@ public class StudentController {
 	public String test() {
 		
 		return name;
+	}
+	
+	@RequestMapping(value="/test",method=RequestMethod.GET)
+	public String testName() {
+		
+		return appName+"-Updated";
 	}
 	
 	

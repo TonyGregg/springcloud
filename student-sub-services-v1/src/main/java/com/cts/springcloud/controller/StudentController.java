@@ -13,16 +13,25 @@ public class StudentController {
 	@Value("${name}")
 	private String name;
 	
+	@Value("${spring.application.name}")
+	private String appName;
+	
 	@RequestMapping(value="/history",method=RequestMethod.GET)
 	public String getHistory() {
 		
-		return "previous history from subsystem";
+		return "previous history from subsystem" ;
 	}
 	
 	@RequestMapping(value="/config-test",method=RequestMethod.GET)
 	public String test() {
 		
 		return name;
+	}
+	
+	@RequestMapping(value="/test",method=RequestMethod.GET)
+	public String testName() {
+		
+		return appName;
 	}
 	
 	

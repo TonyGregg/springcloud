@@ -1,0 +1,12 @@
+server:  port: 8094
+spring:
+  profiles.active: local
+  application:    name: student-sub-services-v2
+  cloud:    config:      label: default
+      fail-fast: true
+      uri: http://localhost:8888
+      discovery:        enabled: false
+      retry:        initial-interval: 2000
+        max-attempts: 2
+        max-interval: 3000
+        multiplier: 1.2    
