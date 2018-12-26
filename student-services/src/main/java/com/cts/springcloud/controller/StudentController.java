@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
@@ -26,8 +27,11 @@ public class StudentController {
 	@Autowired
 	private DiscoveryClient discoveryClient;
 
-	@Autowired
+	@Autowired	
 	private LoadBalancerClient loadBalancer;
+	
+	@Value("${test.value}")
+	private String temp;
 
 	private static final String serviceId = "student-sub-services";
 
@@ -43,6 +47,18 @@ public class StudentController {
 		student.setPrvHistory(history);
 
 		return student;
+	}
+	
+	@RequestMapping(value = "/history", method = RequestMethod.GET)
+	public String history() {
+	
+		return "History from RAjesh";
+	}
+	
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	public String test() {
+	
+		return temp;
 	}
 
 	private String callSubSystem(String url) {
@@ -66,7 +82,7 @@ public class StudentController {
 	private String getUrl(String serviceId) {
 		String url = null;
 		List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);
-		for (ServiceInstance instance : instances) {
+		for (ServiceInstance instance : instances) {			
 			System.out.println("Instance URL ::" + instance.getUri().toString());
 		}
 

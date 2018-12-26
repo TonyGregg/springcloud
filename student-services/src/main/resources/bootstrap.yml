@@ -1,0 +1,16 @@
+server:
+  port: ${vcap.application.port:8080}
+spring:
+  profiles.active: local     
+  application:    name: cts-student-services
+    
+eureka:
+  client:
+    register-with-eureka: true    
+    service-url: 
+      defaultZone: http://${vcap.services.cloudProps.credentials.eureka-uri:localhost:8761}/eureka      
+  instance:
+    hostname: ${vcap.application.application_uris[0]:localhost}   
+    instance-id: ${spring.application.name}:${vcap.application..application_id:${spring.application.instance_id:${random.value}}}
+
+test.value:  http://${vcap.services.cloudProps.credentials.eureka-uri:localhost:8761}/eureka

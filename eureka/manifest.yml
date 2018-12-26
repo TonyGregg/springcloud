@@ -1,0 +1,8 @@
+applications:
+- name: cts-eureka
+  memory: 780M
+  instances: 1
+  timeout: 180 
+  services:
+  - cloudProps
+buildpack: java_buildpack

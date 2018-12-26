@@ -1,0 +1,15 @@
+server:
+ port: 8888
+ 
+spring:
+  application:    name: cts-config-server
+
+
+management : 
+  health:
+    refresh.enabled : true
+  security.enabled: false
+
+endpoints:
+  enabled: true
+  refresh.enabled: true        

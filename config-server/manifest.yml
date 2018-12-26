@@ -1,0 +1,11 @@
+applications:
+- name: cts-config-server
+  memory: 800M    
+  instances: 1
+  timeout: 180 
+  routes:
+  - route: cts-config-server.cfapps.io
+  services:
+  - cloudProps
+  - db  
+buildpack: 
